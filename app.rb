@@ -3,12 +3,9 @@
 require 'bundler'
 Bundler.require
 
-# アイプロで登場する立ち絵
-# idol_{アイドルの通し番号}_{ステージ（1〜3）}_{表情差分番号}.png
-# 410の部分は謎。別の数字でなんか出そうだけど、画像の横幅とかと対応してるわけでもないっぽい
-# 通し番号は連番なので地道にアイドルとの対応付け表作っていく必要がある
-# e.g.)
-# http://125.6.169.35/idolmaster/image_sp/event_flash/410/idol/idol_26_1_1.png
+# Event CG shown at IdolProduce.
+# idol_{idol_id}_{stage_id}_{diff_id}.png
+# e.g. http://125.6.169.35/idolmaster/image_sp/event_flash/410/idol/idol_26_1_1.png
 
 
 def save_image idol_id, stage_id, diff_id
@@ -19,7 +16,7 @@ def save_image idol_id, stage_id, diff_id
   url = "http://125.6.169.35/idolmaster/image_sp/event_flash/410/idol/#{file_name}"
   file_path = "./images/#{file_name}"
 
-  # If file is already exists and isn't break, exit.
+  # Exit if the file is already exist and isn't broken
   if File.exist? file_path
     if FileTest.size? file_path
       return true
